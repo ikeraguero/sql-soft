@@ -1,0 +1,1 @@
+/*d. Crie um índice para a chave estrangeira da tabela de produtos; */
