@@ -1,0 +1,12 @@
+-- e. Atualizando o status do fornecedor para ‘INATIVO’ nos fornecedores que não forneceram nenhum produto.
+
+UPDATE SUPPLIER 
+SET DSSTATUS = 'INATIVO'
+WHERE CDSUPPLIER 
+IN (SELECT SUPPLIER.CDSUPPLIER 
+    FROM PRODUCT 
+    RIGHT JOIN SUPPLIER 
+    ON PRODUCT.CDSUPPLIER = SUPPLIER.CDSUPPLIER 
+    WHERE NMPRODUCT 
+    IS NULL
+);

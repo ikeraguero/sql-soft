@@ -1,0 +1,7 @@
+--e. O nome e o telefone de todos os clientes que ainda não compraram produtos;
+
+
+SELECT NMCUSTOMER, IDFONE
+FROM CUSTOMER 
+LEFT JOIN REQUEST ON REQUEST.CDCUSTOMER = CUSTOMER.CDCUSTOMER
+WHERE REQUEST.CDCUSTOMER IS NULL; 
