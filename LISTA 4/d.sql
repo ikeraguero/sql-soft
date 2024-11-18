@@ -2,7 +2,11 @@
 --compra, o total comprado e a média de valor comprado, ordenado por maior
 --compra decrescente;
 
-SELECT NMCUSTOMER, IDFONE, MAX(VLTOTAL) AS 'MAX PRICE', MIN(VLTOTAL) AS 'MIN PRICE' 
-FROM CUSTOMER
-JOIN REQUEST ON REQUEST.CDCUSTOMER = CUSTOMER.CDCUSTOMER 
+SELECT 
+	NMCUSTOMER AS customer_name, 
+	IDFONE AS customer_phone, 
+	MAX(VLTOTAL) AS highest_order, 
+	MIN(VLTOTAL) AS lowest_order
+FROM CUSTOMER AS C
+JOIN REQUEST AS R ON R.CDCUSTOMER = C.CDCUSTOMER 
 GROUP BY NMCUSTOMER, IDFONE

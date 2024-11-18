@@ -1,6 +1,9 @@
 --  h. O nome do cliente, a data do pedido e o valor total do pedido para pedidos feitos entre junho e julho de 2003;
 
-SELECT NMCUSTOMER, DTREQUEST, VLTOTAL 
+SELECT 
+	NMCUSTOMER AS customer_name, 
+	DTREQUEST AS request_date, 
+	VLTOTAL AS total_request_value 
 FROM CUSTOMER 
 JOIN REQUEST ON CUSTOMER.CDCUSTOMER = REQUEST.CDCUSTOMER 
 WHERE DTREQUEST

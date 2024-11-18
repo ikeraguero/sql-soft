@@ -1,9 +1,12 @@
 -- f. O nome do fornecedor e quantos produtos ele fornece, para todos os fornecedores que fornecem mais que um produto;
 
-SELECT NMSUPPLIER, 
+SELECT 
+	NMSUPPLIER AS supplier_name,  
 CASE 
 	WHEN COUNT(*) > 1 THEN COUNT(*)
 	ELSE NULL
-END AS 'PRODUCTS OFFERED'
-FROM SUPPLIER JOIN PRODUCT ON
-PRODUCT.CDSUPPLIER = SUPPLIER.CDSUPPLIER GROUP BY NMSUPPLIER;
+END AS offered_products
+FROM SUPPLIER AS S
+JOIN PRODUCT AS P ON
+P.CDSUPPLIER = S.CDSUPPLIER 
+GROUP BY NMSUPPLIER;

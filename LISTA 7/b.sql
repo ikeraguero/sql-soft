@@ -1,0 +1,14 @@
+-- B. Atualizando o preço do produto como sendo a média dos valores unitários de venda, somente para produtos que venderam menos que 800 unidades;
+UPDATE PRODUCT
+SET VLPRICE = (
+    SELECT AVG(VLUNITARY) 
+    FROM PRODUCTREQUEST PR
+    WHERE PR.CDPRODUCT = PRODUCT.CDPRODUCT
+)
+WHERE CDPRODUCT IN (
+    SELECT PRODUCT.CDPRODUCT 
+    FROM PRODUCTREQUEST AS PR
+    JOIN PRODUCT ON PR.CDPRODUCT = PRODUCT.CDPRODUCT
+    GROUP BY PRODUCT.CDPRODUCT, QTAMOUNT
+    HAVING COUNT(*) * QTAMOUNT < 800
+)
